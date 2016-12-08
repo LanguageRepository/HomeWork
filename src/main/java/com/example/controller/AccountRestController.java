@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.dto.*;
-import com.example.exception.HttpMessage;
+import com.example.exception.RestResult;
 import com.example.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,35 +27,35 @@ public class AccountRestController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpMessage updateAccount(@RequestBody AccountDtoForUpdate dto) {
-        HttpMessage httpMessage;
+    public RestResult updateAccount(@RequestBody AccountDtoForUpdate dto) {
+        RestResult restResult;
         try {
             accountService.updateAccount(dto);
-            return httpMessage = new HttpMessage("OK");
+            return restResult = new RestResult("OK");
         } catch (Exception ex) {
-            return httpMessage = new HttpMessage("ERROR", ex.getMessage());
+            return restResult = new RestResult("ERROR", ex.getMessage());
         }
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public HttpMessage deleteAccount(@PathVariable("id") Long id) {
-        HttpMessage httpMessage;
+    public RestResult deleteAccount(@PathVariable("id") Long id) {
+        RestResult restResult;
         try {
             accountService.deleteAccount(id);
-            return httpMessage = new HttpMessage("OK");
+            return restResult = new RestResult("OK");
         } catch (Exception ex) {
-            return httpMessage = new HttpMessage("ERROR", ex.getMessage());
+            return restResult = new RestResult("ERROR", ex.getMessage());
         }
     }
 
     @RequestMapping(value = "/generateAccounts")
-    public HttpMessage generateAccounts() {
-        HttpMessage httpMessage;
+    public RestResult generateAccounts() {
+        RestResult restResult;
         try {
             accountService.generateRandomAccounts();
-            return httpMessage = new HttpMessage("OK");
+            return restResult = new RestResult("OK");
         } catch (Exception ex) {
-            return httpMessage = new HttpMessage("ERROR", ex.getMessage());
+            return restResult = new RestResult("ERROR", ex.getMessage());
         }
     }
 

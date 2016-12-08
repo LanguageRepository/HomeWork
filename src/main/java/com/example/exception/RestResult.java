@@ -1,17 +1,17 @@
 package com.example.exception;
 
-public class HttpMessage {
+public class RestResult {
 
     private String status;
 
     private String message;
 
-    public HttpMessage(String status, String message) {
+    public RestResult(String status, String message) {
         this.status = status;
         this.message = message;
     }
 
-    public HttpMessage(String status) {
+    public RestResult(String status) {
         this.status = status;
     }
 
