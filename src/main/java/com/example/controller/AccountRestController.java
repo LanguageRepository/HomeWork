@@ -20,12 +20,12 @@ public class AccountRestController {
         return accountService.getAccount(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAccount(@RequestBody AccountDto dto) {
         accountService.createAccount(dto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateAccount(@RequestBody AccountDto dto) {
         accountService.updateAccount(dto);
     }
