@@ -1,4 +1,4 @@
-package com.example.configuration;
+package com.example.controller;
 
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

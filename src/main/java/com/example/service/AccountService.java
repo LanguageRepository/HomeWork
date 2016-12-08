@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.AccountDto;
+import com.example.dto.*;
 import com.example.entity.Account;
 import com.example.repository.AccountRepository;
 import com.example.util.AccountUtils;
@@ -22,18 +22,19 @@ public class AccountService {
     private AccountUtils accountUtils;
 
     @Transactional
-    public void createAccount(AccountDto dto) {
-        accountRepository.save(accountUtils.convertDtoToEntity(dto));
+    public AccountDtoWithoutPassword createAccount(AccountDtoForCreate dtoForCreate) {
+        Account account = accountRepository.save(accountUtils.convertDtoToEntityForCreate(dtoForCreate));
+        return accountUtils.convertEntityToDtoWithoutPassword(account);
     }
 
     @Transactional
-    public AccountDto getAccount(Long id) {
-        return accountUtils.convertEntityToDto(accountRepository.getOne(id));
+    public AccountDtoForGet getAccount(Long id) {
+        return accountUtils.convertEntityToDtoForGet(accountRepository.getOne(id));
     }
 
     @Transactional
-    public void updateAccount(AccountDto dto) {
-        accountRepository.saveAndFlush(accountUtils.convertDtoToEntity(dto));
+    public void updateAccount(AccountDtoForUpdate dto) {
+        accountRepository.saveAndFlush(accountUtils.convertDtoToEntityForUpdate(dto));
     }
 
     @Transactional
